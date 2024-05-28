@@ -31,7 +31,12 @@ messaging.onBackgroundMessage((payload) => {
     .matchAll({ includeUncontrolled: true, type: "window" })
     .then((clients) => {
       clients.forEach((client) => {
-        client.postMessage(payload);
+        // TODO: Enviar payload apenas para abas do domínio ou localhost
+        if (client.url.startsWith("http://localhost:")) {
+          console.log("payload", payload);
+          console.log("client", client);
+          client.postMessage(payload);
+        }
       });
     });
 });

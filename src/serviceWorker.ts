@@ -25,8 +25,8 @@ export const register = () => {
 };
 
 /**
- * Registra um ouvinte de evento para mensagens recebidas do service worker.
- * @param setNotification - A função configuradora de estado para a notificação.
+ * Registra um ouvinte de evento para mensagens recebidas do Service Worker.
+ * @param setNotification - Função dispatch quando houver novo notificação.
  */
 export const serviceWorkerEventListener = (
   setNotification: React.Dispatch<React.SetStateAction<NotificationType>>
