@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./components/ui/button";
 import "./global.css";
+import { ProgressBar } from "./components/ProgressBar";
+import { ChartConnect } from "./components/ChartConnect";
 import {
   sendNativeNotification,
   toastNotification,
@@ -46,20 +48,29 @@ export function App() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center h-screen flex-col border-r-amber-700">
-      {notification?.notification ? (
-        <>
-          <h1 className="mb-4 font-medium">
-            {notification?.notification?.title}
-          </h1>
-          <p>{notification?.notification?.body}</p>
-          <Button className="mt-8 bg-cyan-500 p-2" onClick={clearNotification}>
-            Limpar
-          </Button>
-        </>
-      ) : (
-        <h1>Sem notificações no momento.</h1>
-      )}
-    </div>
+    <>
+      <ChartConnect />
+      <div className="flex justify-center items-center h-screen flex-col border-r-amber-700">
+        {notification?.notification ? (
+          <>
+            <h1 className="mb-4 font-medium">
+              {notification?.notification?.title}
+            </h1>
+            <p>{notification?.notification?.body}</p>
+            <Button
+              className="mt-8 bg-cyan-500 p-2"
+              onClick={clearNotification}
+            >
+              Limpar
+            </Button>
+          </>
+        ) : (
+          <>
+            {/* <ProgressBar orientation="VERTICAL" percentage={100} /> */}
+            <h1>Sem notificações no momento.</h1>
+          </>
+        )}
+      </div>
+    </>
   );
 }
