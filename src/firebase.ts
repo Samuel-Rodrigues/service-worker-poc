@@ -12,8 +12,10 @@ const firebaseConfig = {
 };
 
 const fireBaseApp = initializeApp(firebaseConfig);
+
 const messaging = getMessaging(fireBaseApp);
-const setupNotifications = async (_: void) => {
+
+const setupNotifications = async () => {
   try {
     const permission = await Notification.requestPermission();
     if (permission === "granted") {

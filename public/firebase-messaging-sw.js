@@ -17,12 +17,21 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
-// Customize background notification handling here
 messaging.onBackgroundMessage((payload) => {
   console.log("Background Message:", payload);
   const notificationTitle = payload.notification.title;
+
   const notificationOptions = {
     body: payload.notification.body,
+    icon: payload.notification.image,
   };
   self.registration.showNotification(notificationTitle, notificationOptions);
+
+  self.clients
+    .matchAll({ includeUncontrolled: true, type: "window" })
+    .then((clients) => {
+      clients.forEach((client) => {
+        client.postMessage(payload);
+      });
+    });
 });
