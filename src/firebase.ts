@@ -25,16 +25,16 @@ const setupNotifications = async () => {
     } else {
       console.log("Notification permission denied.");
     }
-    onMessage(messaging, (payload) => {
-      console.log("Foreground Message:", payload);
-    });
+    // onMessage(messaging, (payload) => {
+    //   console.log("Foreground Message:", payload);
+    // });
   } catch (error) {
     console.error("Error setting up notifications:", error);
   }
 
-  onMessage(messaging, (payload) => {
-    console.log("Message received. ", payload);
-  });
+  // onMessage(messaging, (payload) => {
+  //   console.log("Message received: ", payload);
+  // });
 };
 
 export { messaging, setupNotifications };

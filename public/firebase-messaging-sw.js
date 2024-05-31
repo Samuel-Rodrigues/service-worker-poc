@@ -33,8 +33,6 @@ messaging.onBackgroundMessage((payload) => {
       clients.forEach((client) => {
         // TODO: Enviar payload apenas para abas do domínio ou localhost
         if (client.url.startsWith("http://localhost:")) {
-          console.log("payload", payload);
-          console.log("client", client);
           client.postMessage(payload);
         }
       });

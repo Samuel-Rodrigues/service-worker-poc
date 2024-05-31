@@ -1,4 +1,7 @@
-type NotificationType = {
+export type NotificationType = {
+  data: {
+    "google.c.a.c_id": string;
+  };
   notification: {
     title: string;
     body: string;
@@ -28,15 +31,16 @@ export const register = () => {
  * Registra um ouvinte de evento para mensagens recebidas do Service Worker.
  * @param setNotification - Função dispatch quando houver novo notificação.
  */
-export const serviceWorkerEventListener = (
-  setNotification: React.Dispatch<React.SetStateAction<NotificationType>>
-) => {
+export const serviceWorkerEventListener = ({
+  setNotification,
+}: {
+  setNotification: (notification: NotificationType) => void;
+}) => {
   navigator.serviceWorker.addEventListener(
     "message",
     ({ data }: MessageEvent<NotificationType>) => {
       if (!data) return;
       setNotification(data);
-      console.log("Menssagem recebida do SW:", data);
     }
   );
 };
